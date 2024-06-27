@@ -1,0 +1,79 @@
+name: From Shadow To The Land
+
+on:
+  push:
+    branches: [ main ]
+
+jobs: 
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout this branch 
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Update submodules
+        run: git submodule update --init --recursive
+
+      - name: Setup hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+      
+      - name: Pull io-repo's static branch
+        uses: actions/checkout@v4
+        with:
+          repository: github_name/github_name.github.io
+          ref: static
+          path: static
+          token: ${{ secrets.BLOG_ACCESS_TOKEN }}
+
+      - name: Processing blog files 
+        run: |
+          chmod +x ./blog-processor/processor
+          cp -rf ./config/config.yaml ./blog-processor/
+          cd blog-processor
+          ./processor
+          cd ..
+
+      - name: Build static files
+        run: |
+          cp -rf ./config/hugo.yaml ./hugo-blog-builder/
+          cp -rf ./themes/* ./hugo-blog-builder/themes/
+          cp -rf ./layouts/* ./hugo-blog-builder/layouts/
+          cd hugo-blog-builder
+          bash ./run.sh
+      
+      
+      - name: Check for changes of static branch
+        working-directory: ./static
+        id: check_static_changes
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            echo "::set-output name=changes::false"
+          else
+            echo "Changes found"
+            echo "::set-output name=changes::true"
+          fi
+
+      - name: Commit and push changes for static branch
+        working-directory: ./static
+        if: steps.check_static_changes.outputs.changes == 'true'
+        run: |
+          git -c user.name='github actions by ${{ github.actor }}' -c user.email='NO' commit -m 'update' 
+          git push "https://${{ secrets.BLOG_ACCESS_TOKEN }}@github.com/github_name/github_name.github.io.git" HEAD:static -f -q
+
+      - name: Commit and Push to main branch
+        working-directory: ./hugo-blog-builder/public
+        run: |
+          pwd
+          git init
+          git checkout -b master
+          git add -A
+          git -c user.name='github actions by ${{ github.actor }}' -c user.email='NO' commit -m 'update' 
+          git push "https://${{ secrets.BLOG_ACCESS_TOKEN }}@github.com/github_name/github_name.github.io.git" HEAD:main -f -q

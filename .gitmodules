@@ -1,0 +1,6 @@
+[submodule "blog-processor"]
+	path = blog-processor
+	url = https://github.com/RoaraeonLiou/blog-processor.git
+[submodule "hugo-blog-builder"]
+	path = hugo-blog-builder
+	url = https://github.com/RoaraeonLiou/hugo-blog-builder.git

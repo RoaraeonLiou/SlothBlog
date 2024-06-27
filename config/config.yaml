@@ -1,0 +1,42 @@
+Basic:
+  BlogDir: "../content"
+  ImageDir: "../content/assert"
+  TemplateFile: "/"
+  OutputDir: "../static"
+  HttpBasePath: "https://raw.githubusercontent.com/github_user/github_user.github.io/static/"
+  DateLayout: "2006-01-02"
+  CommonHeaderFileName: ".header"
+  CommonHeaderFileExt: ".toml"
+  CommonHeaderFileFormat: "toml"
+#  DateLayout: "2006-01-02 15:04:05"
+
+LogStrategy:
+  LogToFile: false
+  LogFile: "/"
+
+DataBase:
+  DBFile: "../static/meta.db"
+
+SearchPageConfig:
+  Require: true
+  Title: "Search"
+  Layout: "search"
+  Summary: "search"
+  Placeholder: "search..."
+  Type: "special"
+
+
+ArchivesPageConfig:
+  Require: true
+  Title: "Archives"
+  Layout: "archives"
+  Url: "/archives/"
+  Summary: "archives"
+  Type: "special"
+
+GlobalHeaderConfig:
+  Author: "Github User"
+
+
+
+
