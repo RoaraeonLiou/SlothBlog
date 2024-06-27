@@ -147,5 +147,7 @@ jobs:
           git push "https://${{ secrets.GITHUB_TOKEN }}@github.com/github_name/github_name.github.io.git" HEAD:main -f -q
 ```
 
+After that, configure hugo's configuration files `hugo.yaml` and blog-prosessor's configuration files `config.yaml` in the `config` directory. The main thing is to replace the GitHub repository address with your own. Other configurations can be used by default.
 
+Finally, just write the blog file in the content directory and submit it through the git command to automatically deploy it to github pages.
 
