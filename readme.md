@@ -1,12 +1,13 @@
-# Sloth Blog
+<!-- # Sloth Blog -->
+<h1 align=center> Sloth Blog </h1>
+
+<h4 align=center> Easy | Simple | Low Code </h4>
+
 yeah, just fork me up...
  
+If the user has no customization requirements, he only needs to complete the basic configuration and install the Git environment locally. 
 This is a blog project designed for lazy people, relying on Github Page and GitHub Action to achieve automatic deployment.
-
 <!-- 这是一个为懒人设计的博客项目, 依托于Github Page和GitHub Action实现自动化部署.  -->
-
-If the user has no customization requirements, he only needs to complete the basic configuration and install the Git environment locally.
-
 <!-- 使用者如果没有定制化需求, 仅需完成基本配置, 在本地安装好Git环境即可使用. -->
 
 **ExampleSite** can be found here: []()
@@ -158,4 +159,5 @@ Finally, just write the blog file in the content directory and submit it through
 ### Special Thanks
 - [hugo](https://github.com/gohugoio/hugo)
 - [PaperMod](https://github.com/adityatelange/hugo-PaperMod/tree/master)
-- [Lovely you](https://github.com/@me)
+- [Lovely you]()
+
