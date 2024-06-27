@@ -151,3 +151,11 @@ After that, configure hugo's configuration files `hugo.yaml` and blog-prosessor'
 
 Finally, just write the blog file in the content directory and submit it through the git command to automatically deploy it to github pages.
 
+### Support
+- Star 🌟 this repository.
+- Help spread the word about SlothBlog by sharing it on social media and recommending it to your friends. 
+
+### Special Thanks
+- [hugo](https://github.com/gohugoio/hugo)
+- [PaperMod](https://github.com/adityatelange/hugo-PaperMod/tree/master)
+- [Lovely you](https://github.com/@me)
