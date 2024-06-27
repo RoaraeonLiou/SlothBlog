@@ -11,17 +11,22 @@ This is a blog project designed for lazy people, relying on Github Page and GitH
 <!-- 使用者如果没有定制化需求, 仅需完成基本配置, 在本地安装好Git环境即可使用. -->
 
 **🧑‍💻 Example Site** can be found here: [My Blog](https://roaraeonliou.github.io/)
+
 **📖 Step-by-step Tutorial** can be found here: [Tutorial](https://roaraeonliou.github.io/)
 
 ### Feature
 
 👐 Completely open source, including submodules.
+
 🎉 Supports directory-level header file definition. Header files support yaml, toml, and json. The default is toml. If you need to change it, please change it in config/config.yaml.
+
 🤖 Automatically upload local images to github after MD5 encryption and confusion, and replace the image source in markdown.
+
 🦾 Added 5 new header fields to make blogging easier
   - `status`: String type. When this field is different from the last time, blog-processor will update this blog. If the value is set to "update", blog-processor will strongly update this blog every time.
   - `include_tags` and `exclude_tags`: List of strings used to add and exclude tags defined at the directory level.
   - `include_categories` and `exclude_categories`: List of strings used to add and exclude categories defined at the directory level.
+
 🏠 Supports custom themes, just copy the theme file and layout file to the `themes` folder and `layouts` folder.
 
 
