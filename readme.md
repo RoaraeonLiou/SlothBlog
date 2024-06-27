@@ -3,7 +3,7 @@
 
 <h4 align=center> 🍳Easy | 😃Simple | ☕️Low Code </h4>
 
-<h5 align=center> yeah~, just 🍴 fork me up...</h5>
+<h5 align=center> Yeah ~, Just 🍴 Fork Me Up...</h5>
 
 This is a blog project designed for lazy people, relying on Github Page and GitHub Action to achieve automatic deployment.
 If the user has no customization requirements, he only needs to complete the basic configuration and install the Git environment locally. 
