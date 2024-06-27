@@ -1,27 +1,28 @@
 <!-- # Sloth Blog -->
-<h1 align=center> Sloth Blog </h1>
+<h1 align=center> 🦥 Sloth Blog 🦥 </h1>
 
-<h4 align=center> Easy | Simple | Low Code </h4>
+<h4 align=center> 🍳Easy | 😃Simple | ☕️Low Code </h4>
 
-yeah, just fork me up...
+yeah~, just 🍴 fork me up...
  
 If the user has no customization requirements, he only needs to complete the basic configuration and install the Git environment locally. 
 This is a blog project designed for lazy people, relying on Github Page and GitHub Action to achieve automatic deployment.
 <!-- 这是一个为懒人设计的博客项目, 依托于Github Page和GitHub Action实现自动化部署.  -->
 <!-- 使用者如果没有定制化需求, 仅需完成基本配置, 在本地安装好Git环境即可使用. -->
 
-**ExampleSite** can be found here: []()
+**🧑‍💻 Example Site** can be found here: [My Blog](https://roaraeonliou.github.io/)
+**📖 Step-by-step Tutorial** can be found here: [Tutorial](https://roaraeonliou.github.io/)
 
 ### Feature
 
-- Completely open source, including submodules.
-- Supports directory-level header file definition. Header files support yaml, toml, and json. The default is toml. If you need to change it, please change it in config/config.yaml.
-- Automatically upload local images to github after MD5 encryption and confusion, and replace the image source in markdown.
-- Added 5 new header fields to make blogging easier
+👐 Completely open source, including submodules.
+🎉 Supports directory-level header file definition. Header files support yaml, toml, and json. The default is toml. If you need to change it, please change it in config/config.yaml.
+🤖 Automatically upload local images to github after MD5 encryption and confusion, and replace the image source in markdown.
+🦾 Added 5 new header fields to make blogging easier
   - `status`: String type. When this field is different from the last time, blog-processor will update this blog. If the value is set to "update", blog-processor will strongly update this blog every time.
   - `include_tags` and `exclude_tags`: List of strings used to add and exclude tags defined at the directory level.
   - `include_categories` and `exclude_categories`: List of strings used to add and exclude categories defined at the directory level.
-- Supports custom themes, just copy the theme file and layout file to the `themes` folder and `layouts` folder.
+🏠 Supports custom themes, just copy the theme file and layout file to the `themes` folder and `layouts` folder.
 
 
 ### How it works
@@ -154,7 +155,7 @@ Finally, just write the blog file in the content directory and submit it through
 
 ### Support
 - Star 🌟 this repository.
-- Help spread the word about SlothBlog by sharing it on social media and recommending it to your friends. 
+- Help spread SlothBlog project by sharing it on social media and recommending it to your friends. 
 
 ### Special Thanks
 - [hugo](https://github.com/gohugoio/hugo)
