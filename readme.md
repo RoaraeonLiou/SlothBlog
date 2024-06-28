@@ -12,7 +12,7 @@ If the user has no customization requirements, he only needs to complete the bas
 
 **🧑‍💻 Example Site** can be found here: [My Blog](https://roaraeonliou.github.io/)
 
-**📖 Step-by-step Tutorial** can be found here: [Tutorial](https://roaraeonliou.github.io/)
+**📖 Step-by-step Tutorial** can be found here: [Tutorial](https://roaraeonliou.github.io/tutorial/how_to_build_this_blog_website/)
 
 ### Feature
 
@@ -79,14 +79,13 @@ jobs:
       # 4. Pull the static branch of your io repository.
       #    Because we store static files and sqlite database files in the static branch. 
       #    Make sure your io repository has a static branch.
-      #    Here you need to change the repository address to your own.
       - name: Pull io-repo's static branch
         uses: actions/checkout@v4
         with:
-          repository: github_name/github_name.github.io
+          repository: ${{ secrets.USERNAME }}/${{ secrets.USERNAME }}.github.io
           ref: static
           path: static
-          token: ${{ secrets.BLOG_ACCESS_TOKEN }}
+          token: ${{ secrets.BLOG_TOKEN }}
 
       # 5. Now it's the showtime of blog-processor.
       #    First, grant the packaged file execution permission.
@@ -107,9 +106,15 @@ jobs:
       #    Finally, build your own static website through hugo.
       - name: Build static files
         run: |
-          cp -rf ./config/hugo.yaml ./hugo-blog-builder/
-          cp -rf ./themes/* ./hugo-blog-builder/themes/
-          cp -rf ./layouts/* ./hugo-blog-builder/layouts/
+          if [ -e "./config/hugo.yaml" ]; then
+            cp -rf ./config/hugo.yaml ./hugo-blog-builder/
+          fi
+          if [ -e "./themes" ]; then
+            cp -rf ./themes/* ./hugo-blog-builder/themes/
+          fi
+          if [ -e "./layouts" ]; then
+            cp -rf ./layouts/* ./hugo-blog-builder/layouts/
+          fi
           cd hugo-blog-builder
           bash ./run.sh
       
@@ -129,16 +134,14 @@ jobs:
 
       # 8. If there are changes in the static branch, push it.
       #    But please note that you need to configure GitHub token here. 
-      #    And set the corresponding repository link to your own.
       - name: Commit and push changes for static branch
         working-directory: ./static
         if: steps.check_static_changes.outputs.changes == 'true'
         run: |
           git -c user.name='github actions by ${{ github.actor }}' -c user.email='NO' commit -m 'update' 
-          git push "https://${{ secrets.GITHUB_TOKEN }}@github.com/github_name/github_name.github.io.git" HEAD:static -f -q
+          git push "https://${{ secrets.BLOG_TOKEN }}@github.com/${{ secrets.USERNAME }}/${{ secrets.USERNAME }}.github.io.git" HEAD:static -f -q
 
       # 9. Force push to the main branch. 
-      #    Here you also need to change the repository link to your own.
       - name: Commit and Push to main branch
         working-directory: ./hugo-blog-builder/public
         run: |
@@ -147,7 +150,7 @@ jobs:
           git checkout -b master
           git add -A
           git -c user.name='github actions by ${{ github.actor }}' -c user.email='NO' commit -m 'update' 
-          git push "https://${{ secrets.GITHUB_TOKEN }}@github.com/github_name/github_name.github.io.git" HEAD:main -f -q
+          git push "https://${{ secrets.BLOG_TOKEN }}@github.com/${{ secrets.USERNAME }}/${{ secrets.USERNAME }}.github.io.git" HEAD:main -f -q
 ```
 
 After that, configure hugo's configuration files `hugo.yaml` and blog-prosessor's configuration files `config.yaml` in the `config` directory. The main thing is to replace the GitHub repository address with your own. Other configurations can be used by default.

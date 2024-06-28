@@ -26,10 +26,10 @@ jobs:
       - name: Pull io-repo's static branch
         uses: actions/checkout@v4
         with:
-          repository: github_name/github_name.github.io
+          repository: ${{ secrets.USERNAME }}/${{ secrets.USERNAME }}.github.io
           ref: static
           path: static
-          token: ${{ secrets.BLOG_ACCESS_TOKEN }}
+          token: ${{ secrets.BLOG_TOKEN }}
 
       - name: Processing blog files 
         run: |
@@ -41,9 +41,15 @@ jobs:
 
       - name: Build static files
         run: |
-          cp -rf ./config/hugo.yaml ./hugo-blog-builder/
-          cp -rf ./themes/* ./hugo-blog-builder/themes/
-          cp -rf ./layouts/* ./hugo-blog-builder/layouts/
+          if [ -e "./config/hugo.yaml" ]; then
+            cp -rf ./config/hugo.yaml ./hugo-blog-builder/
+          fi
+          if [ -e "./themes" ]; then
+            cp -rf ./themes/* ./hugo-blog-builder/themes/
+          fi
+          if [ -e "./layouts" ]; then
+            cp -rf ./layouts/* ./hugo-blog-builder/layouts/
+          fi
           cd hugo-blog-builder
           bash ./run.sh
       
@@ -66,7 +72,7 @@ jobs:
         if: steps.check_static_changes.outputs.changes == 'true'
         run: |
           git -c user.name='github actions by ${{ github.actor }}' -c user.email='NO' commit -m 'update' 
-          git push "https://${{ secrets.BLOG_ACCESS_TOKEN }}@github.com/github_name/github_name.github.io.git" HEAD:static -f -q
+          git push "https://${{ secrets.BLOG_TOKEN }}@github.com/${{ secrets.USERNAME }}/${{ secrets.USERNAME }}.github.io.git" HEAD:static -f -q
 
       - name: Commit and Push to main branch
         working-directory: ./hugo-blog-builder/public
@@ -76,4 +82,4 @@ jobs:
           git checkout -b master
           git add -A
           git -c user.name='github actions by ${{ github.actor }}' -c user.email='NO' commit -m 'update' 
-          git push "https://${{ secrets.BLOG_ACCESS_TOKEN }}@github.com/github_name/github_name.github.io.git" HEAD:main -f -q
+          git push "https://${{ secrets.BLOG_TOKEN }}@github.com/${{ secrets.USERNAME }}/${{ secrets.USERNAME }}.github.io.git" HEAD:main -f -q
