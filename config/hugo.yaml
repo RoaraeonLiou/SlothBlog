@@ -23,7 +23,9 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
-
+  # support math
+  math: true
+  
   showAllPagesInArchive: true
   ShowReadingTime: true
   ShowShareButtons: true
@@ -36,10 +38,10 @@ params:
   UseHugoToc: true
   disableSpecial1stPost: false
   disableScrollToTop: false
-  comments: false
+  comments: true
   hidemeta: false
   hideSummary: false
-  showtoc: false
+  showtoc: true
   tocopen: false
 
   assets:
@@ -152,3 +154,23 @@ markup:
     # guessSyntax: true
     # lineNos: true
     # style: monokai
+  tableOfContents:
+    endLevel: 3
+    ordered: false
+    startLevel: 2
+    
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+          inline:
+          - - \(
+            - \)
+          - - $
+            - $
+        enable: true

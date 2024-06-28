@@ -102,7 +102,7 @@ jobs:
 
       # 6. Then the hugo-blog-builder comes to build your static website.
       #    First overwrite the default configuration file.
-      #    Then copy the theme package file and layouts file to submodule.
+      #    Then copy the theme package files, layouts files and assets files to submodule.
       #    Finally, build your own static website through hugo.
       - name: Build static files
         run: |
@@ -114,6 +114,9 @@ jobs:
           fi
           if [ -e "./layouts" ]; then
             cp -rf ./layouts/* ./hugo-blog-builder/layouts/
+          fi
+          if [ -e "./assets" ]; then
+            cp -rf ./assets ./hugo-blog-builder/
           fi
           cd hugo-blog-builder
           bash ./run.sh

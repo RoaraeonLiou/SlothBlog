@@ -50,6 +50,9 @@ jobs:
           if [ -e "./layouts" ]; then
             cp -rf ./layouts/* ./hugo-blog-builder/layouts/
           fi
+          if [ -e "./assets" ]; then
+            cp -rf ./assets ./hugo-blog-builder/
+          fi
           cd hugo-blog-builder
           bash ./run.sh
       
